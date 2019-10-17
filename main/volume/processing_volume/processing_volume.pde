@@ -6,14 +6,14 @@ Amplitude amp;
 int bands = 512;
 float[] spectrum = new float[bands];
 Serial port; 
-String portname = "COM4";
+String portname = "COM5";
 int baudrate = 9600;
 int value = 0;
 
 void setup() {
-  size(1500, 1000);
+  size(100, 100);
   background(255);
-  port = new Serial(this, Serial.list()[0], baudrate);
+  port = new Serial(this, portname, baudrate);
   println(port);
   
   in = new AudioIn(this, 0);
@@ -26,9 +26,9 @@ void setup() {
 
 void draw() {
   background(255);
-  
-  int vol = (int) amp.analyze() * 100;
-  
+
+  int vol = (int) (amp.analyze() * 100);
+    
   port.write(vol);
   
 }

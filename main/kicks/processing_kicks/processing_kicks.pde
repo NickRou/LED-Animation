@@ -7,7 +7,7 @@ FFT fft;
 int bands = 512;
 float[] spectrum = new float[bands];
 Serial port; 
-String portname = "COM4";
+String portname = "COM5";
 int baudrate = 9600;
 int value = 0;
 
@@ -30,19 +30,15 @@ void draw() {
   background(255);
   fft.analyze(spectrum);
   strokeWeight(5);
-  
-  int spec_avg = 0;
+  int bass_band_start = 5;
+  int bass_band_count = 10;
+  int bass = 0;
   int clap = 0;
   
    for(int i = 0; i < bands; i++){
-     if (i >= 1 && i <= 15) {
-       spec_avg += (int) (spectrum[i] * 500);
+     if (i >= bass_band_start && i <= bass_band_start+bass_band_count) {
+       bass += (int) (spectrum[i] * 3000);
        stroke(255, 0 , 0);
-     }
-     else if (i >= 285 && i <= 300) {
-       clap += (int) (spectrum[i] * 10000);
-       stroke(0 , 0 , 255);
-      
      } else {
        stroke(0, 0, 0);
      }
@@ -51,12 +47,9 @@ void draw() {
     
   } 
     
-    println("Clap: " + clap/15);
-    println("Bass: " + spec_avg/15);
-    if (clap/15 > 80 && spec_avg/15 < 70) {
+    println("Bass: " + bass/bass_band_count);
+    if (bass/bass_band_count > 20) {
       port.write(1);
-    } else if (clap/15 < 200 && spec_avg/15 >= 65) {
-      port.write(2);
     }
   
   
