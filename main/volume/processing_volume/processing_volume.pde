@@ -26,9 +26,13 @@ void setup() {
 
 void draw() {
   background(255);
+  println("Previous Volume: " + port.read());
 
-  int vol = (int) (amp.analyze() * 100);
+  int vol = (int) (amp.analyze() * 400);
+  println("Volume: " + vol);
     
   port.write(vol);
+  
+  delay(50);
   
 }
