@@ -21,13 +21,13 @@ void loop() {
     //clap signal sent
     if (vol == 1) {
       for(int i=0; i<NUMPIXELS; i++) {
-        pixels.setPixelColor(i, pixels.Color(0, 0, 139));
+        pixels.setPixelColor(i, pixels.Color(255, 255, 255));
       }
       pixels.show();
     //bass signal sent
     } else if (vol == 2){
       for(int i=0; i<NUMPIXELS; i++) {
-        pixels.setPixelColor(i, pixels.Color(255, 80, 0));
+        pixels.setPixelColor(i, pixels.Color(0, 255, 0));
       }
       pixels.show();
     } else {

@@ -13,13 +13,17 @@ String portname = "COM4";
 int baudrate = 9600;
 int value = 0;
 
+//variables
+int w_h = 500; //window height
+int w_w = 1500; //window width
+
 void setup() {
   //visualization size
-  size(1500, 1000);
+  size(1500, 500);
   background(255);
   
   //set up serial port
-  port = new Serial(this, Serial.list()[0], baudrate);
+  //port = new Serial(this, Serial.list()[0], baudrate);
   
   //set up fft analysis
   in = new AudioIn(this, 0);
@@ -64,25 +68,31 @@ void draw() {
   bass = bass/(bass_range[1] - bass_range[0]);
   clap = clap/(clap_range[1] - clap_range[0]);
   
+  //threshold values
+  int clap_thresh = 80;
+  int bass_thresh = 65;
+  
   //visualization stuff
   stroke(255, 0, 0);
-  line(0, (1000 - 65), 45, (1000 - 65));
-  rect(0, (1000 - bass), (bass_range[1] - bass_range[0])*3, (1000 - bass));
+  line(bass_range[0], (w_h - bass_thresh), bass_range[1]*3, (w_h - bass_thresh));
+  rect(bass_range[0], (w_h - bass), (bass_range[1] - bass_range[0])*3, (w_h - bass));
   stroke(0, 0, 255);
-  line(855, (1000 - 80), 900, (1000 - 80));
-  rect(855, (1000 - clap), (clap_range[1] - clap_range[0])*3, (1000 - clap));
+  line(clap_range[0]*3, (w_h - clap_thresh), clap_range[1]*3, (w_h - clap_thresh));
+  rect(clap_range[0]*3, (w_h - clap), (clap_range[1] - clap_range[0])*3, (w_h - clap));
   
     
   //print statments
   println("Bass: " + bass);
   println("Clap: " + clap);
 
+  /*
   //send data to Arduino
   if (clap > 80 && bass < 70) {
     port.write(1);
   } else if (clap < 200 && bass >= 65) {
     port.write(2);
   }
+  */
 
 
   
