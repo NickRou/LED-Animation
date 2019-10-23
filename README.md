@@ -6,7 +6,8 @@
 ## Hardware
 
 + Arduino Uno Rev3
-+ WD2812B Led Strip
++ WS2812B Led Strip
++ 5V Power Supplies
 
 ## Software 
 
