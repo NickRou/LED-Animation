@@ -23,7 +23,7 @@ void setup() {
   background(255);
   
   //set up serial port
-  //port = new Serial(this, Serial.list()[0], baudrate);
+  port = new Serial(this, Serial.list()[0], baudrate);
   
   //set up fft analysis
   in = new AudioIn(this, 0);
@@ -85,14 +85,13 @@ void draw() {
   println("Bass: " + bass);
   println("Clap: " + clap);
 
-  /*
+
   //send data to Arduino
   if (clap > 80 && bass < 70) {
     port.write(1);
   } else if (clap < 200 && bass >= 65) {
     port.write(2);
   }
-  */
 
 
   

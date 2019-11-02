@@ -14,3 +14,5 @@
 + Arduino IDE
 + Processing (https://processing.org/)
 
+## Circuit Setup
+![](images/layout.png)
